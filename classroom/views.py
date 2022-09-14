@@ -1,7 +1,8 @@
 from operator import contains
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, CreateView
 from classroom.forms import ContactForm
+from classroom.models import Teacher
 # Create your views here.
 # def home(request):
 #     return render(request,'classroom/home.html')
@@ -22,4 +23,9 @@ class ContactFormView(FormView):
         print(form.cleaned_data)
         return super().form_valid(form)
        
-    
+class TeacherCreateView(CreateView):
+    model = Teacher
+    fields = '__all__'
+    success_url= "/classroom/thankyou/"
+       
+       
