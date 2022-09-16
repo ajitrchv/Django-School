@@ -1,7 +1,7 @@
 from operator import contains
 from typing import List
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, CreateView, ListView
+from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView
 from classroom.forms import ContactForm
 from classroom.models import Teacher
 # Create your views here.
@@ -34,5 +34,10 @@ class TeacherListView(ListView):
     queryset= Teacher.objects.all()
     context_object_name: 'teacher_list'
     
-       
+class TeacherDetailView(DetailView):
+    # it should have a model associated with it, just like every class based views
+    #
+    model = Teacher
+    
+    
        
