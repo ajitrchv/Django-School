@@ -1,9 +1,10 @@
 from operator import contains
 from typing import List
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView, UpdateView
 from classroom.forms import ContactForm
 from classroom.models import Teacher
+from django.urls import reverse_lazy
 # Create your views here.
 # def home(request):
 #     return render(request,'classroom/home.html')
@@ -38,6 +39,13 @@ class TeacherDetailView(DetailView):
     # it should have a model associated with it, just like every class based views
     #
     model = Teacher
+    
+class TeacherUpdateView(UpdateView):
+    #shares model_from.html from create view
+    model = Teacher
+    fields="__all__"
+    success_url= reverse_lazy('classroom:teacher_list')
+    
     
     
        
