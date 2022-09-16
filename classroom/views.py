@@ -1,7 +1,7 @@
 from operator import contains
 from typing import List
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from classroom.forms import ContactForm
 from classroom.models import Teacher
 from django.urls import reverse_lazy
@@ -44,6 +44,14 @@ class TeacherUpdateView(UpdateView):
     #shares model_from.html from create view
     model = Teacher
     fields="__all__"
+    success_url= reverse_lazy('classroom:teacher_list')
+    
+    
+class TeacherDeleteView(DeleteView):
+    #returns confirm delete button by the name --> <modelname>_confirm_delete.html
+    
+    model= Teacher
+    
     success_url= reverse_lazy('classroom:teacher_list')
     
     
